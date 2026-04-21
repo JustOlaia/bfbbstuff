@@ -1332,7 +1332,7 @@ void zNPCBPlankton::ParseLinks()
 
                 if (t->origin == NULL)
                 {
-                    load_territory(slot, obj);
+                    load_territory(slot, *obj);
 
                     // If still null after load, zero it out
                     if (t->origin == NULL || t->platform == NULL)
