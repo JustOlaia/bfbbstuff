@@ -1379,16 +1379,15 @@ void zNPCBPlankton::SelfSetup()
 // 0x8016B7E8
 void zNPCBPlankton::Damage(en_NPC_DAMAGE_TYPE damageType, xBase* src, const xVec3* hitPos)
 {
+    U32 dmgType = (U32)damageType;
     // Notify psyche
     psy_instinct->GIDOfActive()
-    //psy_instinct->Notify(NPC_DAMAGE_EVENT);
 
-    U32 dmgType = (U32)damageType;
     if (dmgType > 12)
         return;
 
     // Switch table on damageType (jump table at -0x5010(r2))
-    switch (damageType)
+    switch (dmgType)
     {
     // types <= 0xC that involve a hit position:
     default:
