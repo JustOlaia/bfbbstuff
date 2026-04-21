@@ -1380,7 +1380,8 @@ void zNPCBPlankton::SelfSetup()
 void zNPCBPlankton::Damage(en_NPC_DAMAGE_TYPE damageType, xBase* src, const xVec3* hitPos)
 {
     // Notify psyche
-    psy_instinct->Notify(NPC_DAMAGE_EVENT);
+    psy_instinct->GIDOfActive()
+    //psy_instinct->Notify(NPC_DAMAGE_EVENT);
 
     if (damageType > 12)
         return;
