@@ -924,17 +924,20 @@ namespace
     // Applies acceleration to each axis of loc toward move.dest using xAccelMove
     static void update_move_accel(xVec3& loc, zNPCBPlankton::move_info& move, F32 dt)
     {
-        xAccelMove(move.accel.x, dt, move.max_vel.x, loc.x, move.vel.x);
-        xAccelMove(move.accel.y, dt, move.max_vel.y, loc.y, move.vel.y);
-        xAccelMove(move.accel.z, dt, move.max_vel.z, loc.z, move.vel.z);
+        xAccelMove(loc.x, move.vel.x, move.accel.x, dt, move.max_vel.x);
+        xAccelMove(loc.y, move.vel.y, move.accel.y, dt, move.max_vel.y);
+        xAccelMove(loc.z, move.vel.z, move.accel.z, dt, move.max_vel.z);
     }
 
     // Decelerates loc toward zero on each axis using xDecelMove
     static void update_move_stop(xVec3& loc, zNPCBPlankton::move_info& move, F32 dt)
     {
-        xDecelMove(move.accel.x, dt, loc.x, move.vel.x);
-        xDecelMove(move.accel.y, dt, loc.y, move.vel.y);
-        xDecelMove(move.accel.z, dt, loc.z, move.vel.z);
+        //xDecelMove(move.accel.x, dt, loc.x, move.vel.x);
+        //xDecelMove(move.accel.y, dt, loc.y, move.vel.y);
+        //xDecelMove(move.accel.z, dt, loc.z, move.vel.z);
+        xAccelMove(loc.x, move.vel.x, 0.0f, dt, move.max_vel.x);
+        xAccelMove(loc.y, move.vel.y, 0.0f, dt, move.max_vel.y);
+        xAccelMove(loc.z, move.vel.z, 0.0f, dt, move.max_vel.z);
     }
 
     // Moves Plankton in an orbit around move.dest using velocity/accel in ring space.
