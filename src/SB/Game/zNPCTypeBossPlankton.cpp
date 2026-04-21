@@ -1817,7 +1817,6 @@ void zNPCBPlankton::setup_beam()
     beam.add_effect(&beam_impact_effect[1]);
     beam.add_effect(&beam_impact_effect[2]);
     beam_charge = (xParEmitter*)xParFindByName("plankton_beam_charge");
-    beam_charge_glow = (xParEmitter*)xParFindByName("plankton_beam_charge_glow");
     // stores beam_charge pointer at owner offset 0x44C
     beam_charge = (xParEmitter*)xParFindByName("plankton_beam_zap");
 }
