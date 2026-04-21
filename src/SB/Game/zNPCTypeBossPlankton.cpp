@@ -1381,7 +1381,7 @@ void zNPCBPlankton::Damage(en_NPC_DAMAGE_TYPE damageType, xBase* src, const xVec
 {
     U32 dmgType = (U32)damageType;
     // Notify psyche
-    psy_instinct->GIDOfActive()
+    psy_instinct->GIDOfActive();
 
     if (dmgType > 12)
         return;
