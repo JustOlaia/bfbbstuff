@@ -1151,7 +1151,8 @@ void zNPCBPlankton::Reset()
 
     // Reset orbit: center = (0,0,0), radius = 0
     orbit.center.x = 0.0f;
-    xVec3Copy(&orbit.center, &xVec3::zero);
+    orbit.center.y = 0.0f;
+    orbit.center.z = 0.0f;
 
     // Reset turn
     turn.dir.x = 0.0f;
@@ -2130,7 +2131,7 @@ void zNPCBPlankton::fall(F32 accel, F32 maxVel)
     move.max_vel.x = 0.0f;
     move.max_vel.y = -maxVel;
     move.max_vel.z = 0.0f;
-    move.vel = xVec3::zero;
+    move.vel =  xVec3::zero; //likely wrong figured out xVec3::zero; does not exist
 }
 
 // 0x8016DAEC
