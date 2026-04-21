@@ -1246,7 +1246,7 @@ void zNPCBPlankton::Process(xScene* xscn, F32 dt)
         const xVec3& myLoc = location();
         turn.dir.x = pLoc->x - myLoc.x;
         turn.dir.y = pLoc->z - myLoc.z;
-        xVec2Normalize(&turn.dir);
+        turn.dir.normalize();
     }
 
     update_follow(dt);
