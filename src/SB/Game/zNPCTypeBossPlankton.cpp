@@ -1177,10 +1177,9 @@ void zNPCBPlankton::Reset()
         active_territory = 0;
         stun_duration = tweak.mode_buddy.stun_duration;
 
-        // If newsfish non-null: call its GoalSet (offset 0x34 in vtable) with 1
         if (newsfish != NULL)
         {
-            newsfish->GoalSet(1);
+            newsfish->TalkOnScreen(1);
         }
     }
 
