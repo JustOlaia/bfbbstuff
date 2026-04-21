@@ -1123,8 +1123,6 @@ void zNPCBPlankton::Setup()
     // zSceneFindObject("NPC_NEWSCASTER") - string addr computed from two addis
     U32 tmpHash = xStrHash("NPC_NEWSCASTER");
     newsfish = (zNPCNewsFish*)zSceneFindObject(tmpHash);
-    // Also finds crony NPC via zSceneFindFirst and stores in psy slot (0x69C)
-    crony = (zNPCBoss*)zSceneFindFirst(NPC_NEWSCASTER_HASH);
 }
 
 // 0x80169990
