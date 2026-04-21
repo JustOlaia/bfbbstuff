@@ -1320,10 +1320,10 @@ void zNPCBPlankton::ParseLinks()
 
     while (link != linkEnd)
     {
-        if (link->type == 0x133) // territory link type
+        if (link->dstEvent == 0x133) // territory link type
         {
-            xBase* obj = zSceneFindObject(link->targetID);
-            S32 slot = (S32)(F32)link->param; // param is F32, fctiwz converts to int
+            xBase* obj = zSceneFindObject(link->dstAssetID);
+            S32 slot = (S32)link->param[0]; // param is F32, fctiwz converts to int
 
             if (slot > 0 && slot <= 8)
             {
