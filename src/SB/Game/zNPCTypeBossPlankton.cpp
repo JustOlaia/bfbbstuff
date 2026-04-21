@@ -2030,6 +2030,9 @@ S32 zNPCBPlankton::player_left_territory() const
 }
 
 // 0x8016D77C
+static void NF_SayLine(zNPCNewsFish* nf, U32 sndid, S32 slot);  
+static void NF_SayInterrupt(zNPCNewsFish* nf, U32 sndid, S32 size, S32 unk, S32 anim);
+
 void zNPCBPlankton::say(int saySet, int unused, bool random)
 {
     if (newsfish == NULL)
@@ -2037,18 +2040,12 @@ void zNPCBPlankton::say(int saySet, int unused, bool random)
 
     if (random)
     {
-        // Randomly pick from say_set[saySet]: queues two dialogue lines
-        S32 size = say_set[saySet].size;
-        en_say_enum* lines = say_set[saySet].say;
-        newsfish->SayLine(lines[0], 1);
-        newsfish->SayLine(lines[1], 2);
+        NF_SayLine(newsfish, say_set[saySet].say[0], 1);
+        NF_SayLine(newsfish, say_set[saySet].say[1], 2);
     }
     else
     {
-        // Direct: play specific line from set
-        en_say_enum* lines = say_set[saySet].say;
-        S32 size2 = say_set[saySet].size;
-        newsfish->SayInterrupt(lines[0], size2, (S32)unused, -1);
+        NF_SayInterrupt(newsfish, say_set[saySet].say[0], say_set[saySet].size, unused, -1);
     }
 }
 
