@@ -1810,7 +1810,7 @@ void zNPCBPlankton::setup_beam()
     beam.attach_effects(xLaserBoltEmitter::FX_WHEN_IMPACT, beam_impact_effect, 3);
     beam.attach_effects(xLaserBoltEmitter::FX_WHEN_DEATH,  beam_death_effect,  1);
     beam.attach_effects(xLaserBoltEmitter::FX_WHEN_KILL,   beam_kill_effect,   1);
-    beam_charge = (xParEmitter*)xParFindByName("plankton_beam_zap");
+    beam_charge = NULL; // TODO: function not yet identified, was (xParEmitter*)xParFindByName("plankton_beam_zap"); before
 }
 
 // 0x8016CE90
