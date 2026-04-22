@@ -1,4 +1,5 @@
 #include "zNPCTypeBossPlankton.h"
+#include "zNPCMgr.h"
 #include "xDebug.h"
 
 #include <types.h>
@@ -1518,22 +1519,19 @@ void zNPCBPlankton::refresh_orbit()
 // 0x8016BB34
 void zNPCBPlankton::scan_cronies()
 {
-    // Get the scene's NPC list, find first NPC of type 'NPCB' (hash 0x4E544233)
-    xScene* scene = g_xSceneCur;
-    xBase** list = (xBase**)scene->npcList.data;
-    S32 count = scene->npcList.count;
-    crony = NULL; // offset 0x4B0
+st_XORDEREDARRAY* npclist = zNPCMgr_GetNPCList();
+crony = NULL;
 
-    for (S32 i = 0; i < count; i++)
+for (S32 i = 0; i < npclist->cnt; i++)
+{
+    xBase* obj = (xBase*)npclist->list[i];
+    U32 typeHash = xBase_GetTypeHash(obj);
+    if (typeHash == 0x4E544233)
     {
-        xBase* obj = list[i];
-        U32 typeHash = xBase_GetTypeHash(obj);
-        if (typeHash == 0x4E544233) // 'NPCB' - zNPCBoss type hash
-        {
-            crony = (zNPCBoss*)obj; // store at 0x4B0
-            break;
-        }
+        crony = (zNPCBoss*)obj;
+        break;
     }
+  }
 }
 
 // 0x8016C044 - Updates Plankton's yaw to face the desired direction
