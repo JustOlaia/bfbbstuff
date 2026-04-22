@@ -1471,7 +1471,7 @@ void zNPCBPlankton::refresh_orbit()
         territory_data* t = &territory[idx];
         xMovePoint* origin = (xMovePoint*)t->origin;
         xVec3Copy(&orbit.center, (xVec3*)((U8*)origin + 8)); // platform XZ
-        orbit.center.y = origin->y; // platform height (offset 0x20)
+        orbit.center.y = origin->asset->delay; // platform height (offset 0x20)
 
         if (flag.attacking)
         {
