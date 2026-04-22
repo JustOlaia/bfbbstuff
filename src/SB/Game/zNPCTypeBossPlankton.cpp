@@ -2380,7 +2380,7 @@ S32 zNPCGoalBPlanktonEvade::Process(en_trantype* trantype, F32 dt, void* ctxt, x
 
     // Periodically pick a new escape orbit position
     owner.delay += dt;
-    F32 moveDelay = xRandFloatRange(tweak.evade.move_delay_min, tweak.evade.move_delay_max);
+    F32 moveDelay = tweak.evade.move_delay_min + xurand() * (tweak.evade.move_delay_max - tweak.evade.move_delay_min);
     if (owner.delay >= moveDelay)
     {
         owner.delay = 0.0f;
