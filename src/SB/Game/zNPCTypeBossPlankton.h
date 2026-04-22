@@ -209,14 +209,14 @@ struct zNPCBPlankton : zNPCBoss
     void load_territory(S32, xBase&);                                  // 0x8016CA7C
     U32 crony_attacking() const;                                        // 0x8016D260
     void stun();                                                        // 0x8016D2B0
-    S32 cronies_dead() const;                                           // 0x8016D440
+    S32 cronies_dead();                                           // 0x8016D440
     void impart_velocity(const xVec3*);                                 // 0x8016D4C4
 
     // Territory management
     void next_territory();                                              // 0x8016D5E0
-    S32 have_cronies() const;                                           // 0x8016D638
+    S32 have_cronies();                                           // 0x8016D638
     S32 move_to_player_territory();                                     // 0x8016D658
-    S32 player_left_territory() const;                                  // 0x8016D6D4
+    S32 player_left_territory();                                  // 0x8016D6D4
 
     // Dialogue
     void say(int, int, bool);                                           // 0x8016D77C
