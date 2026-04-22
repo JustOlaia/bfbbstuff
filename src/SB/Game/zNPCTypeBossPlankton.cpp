@@ -1,5 +1,6 @@
 #include "zNPCTypeBossPlankton.h"
 #include "zNPCMgr.h"
+#include "zEntDestructObj.h"
 #include "xDebug.h"
 
 #include <types.h>
@@ -1600,7 +1601,7 @@ void zNPCBPlankton::update_dialog(F32 dt)
     {
         if (t->fuse != NULL && !t->fuse_detected)
         {
-            if (xSceneIsVisible(t->fuse)) // fuse is on screen?
+            if (zEntDestructObj_isDestroyed(t->fuse))) // has fuse been destroyed?
             {
                 say(2, 0, false); // say_fuse_near
                 t->fuse_detected = 1;
