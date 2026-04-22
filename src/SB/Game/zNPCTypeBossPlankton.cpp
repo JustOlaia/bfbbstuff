@@ -113,7 +113,18 @@ namespace
         { 5, "Laser_med_pwrup1", 0, 0 }
     };
 
-    const size_t beam_ring_curve = 2;
+    static const xDecalEmitter::curve_node beam_ring_curve[2] = {
+    { 0.0f, { 255, 255, 255, 255 }, 1.0f },
+    { 1.0f, { 255, 255, 255,   0 }, 0.0f },
+};
+
+
+
+static const xDecalEmitter::curve_node beam_glow_curve[3] = {
+    { 0.0f, { 255, 255, 255,   0 }, 0.0f },
+    { 0.5f, { 255, 255, 255, 255 }, 1.0f },
+    { 1.0f, { 255, 255, 255,   0 }, 0.0f },
+};
 
     xVec3* get_player_loc()
     {
@@ -1789,7 +1800,7 @@ void zNPCBPlankton::init_beam()
 
     // beam_ring (xDecalEmitter at offset 0x2E8)
     beam_ring.init(0x7F, "Plankton\'s Beam Rings");
-    beam_ring.set_curve((xDecalEmitter::curve_node*)&beam_ring_curve, 2);
+    beam_ring.set_curve(beam_ring_curve, 2);
     beam_ring.set_texture("bubble");
     beam_ring.set_default_config();
     beam_ring.cfg.flags = 0;
@@ -1800,7 +1811,7 @@ void zNPCBPlankton::init_beam()
 
     // beam_glow (xDecalEmitter at offset 0x350)
     beam_glow.init(0x07, "Plankton\'s Beam Glow");
-    beam_glow.set_curve((xDecalEmitter::curve_node*)&beam_glow_curve, 3);
+    beam_glow.set_curve(beam_glow_curve, 3);
     beam_glow.set_texture("fx_firework");
     beam_glow.set_default_config();
     beam_glow.cfg.flags = 0;
