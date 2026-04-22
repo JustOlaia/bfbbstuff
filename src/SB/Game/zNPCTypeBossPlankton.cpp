@@ -1725,7 +1725,7 @@ void zNPCBPlankton::update_aim_gun(F32 dt)
 // returns (health != 0) ? 1 : 0 via neg/or/srawi idiom
 S32 zNPCBPlankton::check_player_damage()
 {
-    U32 hp = globals.player.health; // offset 0x1AFC
+    U32 hp = globals.player.Health; // offset 0x1AFC
     return (hp != 0) ? 1 : 0;
 }
 
