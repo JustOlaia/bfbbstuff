@@ -1519,7 +1519,7 @@ void zNPCBPlankton::refresh_orbit()
 void zNPCBPlankton::scan_cronies()
 {
     // Get the scene's NPC list, find first NPC of type 'NPCB' (hash 0x4E544233)
-    xScene* scene = (xScene*)zSceneGetScene();
+    xScene* scene = g_xSceneCur;
     xBase** list = (xBase**)scene->npcList.data;
     S32 count = scene->npcList.count;
     crony = NULL; // offset 0x4B0
