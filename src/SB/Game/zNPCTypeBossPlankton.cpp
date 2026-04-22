@@ -1740,7 +1740,7 @@ void zNPCBPlankton::load_territory(S32 slot, xBase& obj)
     {
     case 0x11:
     {
-        xGroup* grp = (xGroup*)&obj
+        xGroup* grp = (xGroup*)&obj;
         S32 childCount = xGroupGetCount(grp);
         for (S32 i = 0; i < childCount; i++)
         {
