@@ -1,6 +1,7 @@
 #include "zNPCTypeBossPlankton.h"
 #include "zNPCMgr.h"
 #include "zEntDestructObj.h"
+#include "xMathInlines.h"
 #include "xDebug.h"
 
 #include <types.h>
