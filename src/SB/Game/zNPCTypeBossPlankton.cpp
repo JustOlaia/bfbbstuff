@@ -1446,7 +1446,7 @@ S32 zNPCBPlankton::next_goal()
 {
     if (mode == MODE_HARASS)
     {
-        return NPC_GOAL_BPLANKTONEVADIE; // 0x4E47424F
+        return NPC_GOAL_BPLANKTONEVADE; // 0x4E47424F
     }
 
     if (flag.hunt)
