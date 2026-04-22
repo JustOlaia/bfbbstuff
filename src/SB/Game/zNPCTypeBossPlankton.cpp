@@ -2153,7 +2153,7 @@ S32 zNPCGoalBPlanktonIdle::Process(en_trantype* trantype, F32 dt, void* ctxt, xS
     if (owner.crony_attacking())
     {
         owner.take_control();
-        *trantype = TRAN_SWITCH;
+        *trantype = GOAL_TRAN_SET;
         return NPC_GOAL_BPLANKTONHUNT;
     }
 
@@ -2214,7 +2214,7 @@ S32 zNPCGoalBPlanktonAttack::Process(en_trantype* trantype, F32 dt, void* ctxt, 
 {
     if (owner.crony_attacking())
     {
-        *trantype = TRAN_SWITCH;
+        *trantype = GOAL_TRAN_SET;
         return NPC_GOAL_BPLANKTONAMBUSH;
     }
 
@@ -2222,7 +2222,7 @@ S32 zNPCGoalBPlanktonAttack::Process(en_trantype* trantype, F32 dt, void* ctxt, 
     F32 delay = owner.delay; // offset 0x2C8
     if (delay >= tweak.idle_time)
     {
-        *trantype = TRAN_SWITCH;
+        *trantype = GOAL_TRAN_SET;
         return owner.next_goal();
     }
 
@@ -2259,7 +2259,7 @@ S32 zNPCGoalBPlanktonAmbush::Process(en_trantype* trantype, F32 dt, void* ctxt, 
     owner.ambush_delay -= dt;
     if (owner.ambush_delay <= 0.0f)
     {
-        *trantype = TRAN_SWITCH;
+        *trantype = GOAL_TRAN_SET;
         return NPC_GOAL_BPLANKTONATTACK;
     }
 
@@ -2267,7 +2267,7 @@ S32 zNPCGoalBPlanktonAmbush::Process(en_trantype* trantype, F32 dt, void* ctxt, 
     {
         owner.say(2, 0, false); // say_fuse_hit
         owner.sickum();
-        *trantype = TRAN_SWITCH;
+        *trantype = GOAL_TRAN_SET;
         return NPC_GOAL_BPLANKTONATTACK;
     }
 
@@ -2313,7 +2313,7 @@ S32 zNPCGoalBPlanktonFlank::Process(en_trantype* trantype, F32 dt, void* ctxt, x
 
     if (dy < tweak.min_arena_dist) // small epsilon / min dist
     {
-        *trantype = TRAN_SWITCH;
+        *trantype = GOAL_TRAN_SET;
         return NPC_GOAL_BPLANKTONATTACK;
     }
     return 0;
@@ -2352,7 +2352,7 @@ S32 zNPCGoalBPlanktonEvade::Process(en_trantype* trantype, F32 dt, void* ctxt, x
 
     if (evade_delay <= 0.0f)
     {
-        *trantype = TRAN_SWITCH;
+        *trantype = GOAL_TRAN_SET;
         return NPC_GOAL_BPLANKTONATTACK;
     }
 
@@ -2399,7 +2399,7 @@ S32 zNPCGoalBPlanktonHunt::Process(en_trantype* trantype, F32 dt, void* ctxt, xS
 {
     if (!owner.flag.hunt)
     {
-        *trantype = TRAN_SWITCH;
+        *trantype = GOAL_TRAN_SET;
         return owner.next_goal();
     }
 
@@ -2415,7 +2415,7 @@ S32 zNPCGoalBPlanktonHunt::Process(en_trantype* trantype, F32 dt, void* ctxt, xS
 
     if (distSq <= beamDist * beamDist)
     {
-        *trantype = TRAN_SWITCH;
+        *trantype = GOAL_TRAN_SET;
         return NPC_GOAL_BPLANKTONBEAM;
     }
 
@@ -2505,7 +2505,7 @@ S32 zNPCGoalBPlanktonStun::Process(en_trantype* trantype, F32 dt, void* ctxt, xS
         owner.delay += dt;
         if (owner.delay >= owner.stun_duration)
         {
-            *trantype = TRAN_SWITCH;
+            *trantype = GOAL_TRAN_SET;
             return owner.next_goal();
         }
     }
@@ -2543,7 +2543,7 @@ S32 zNPCGoalBPlanktonFall::Process(en_trantype* trantype, F32 dt, void* ctxt, xS
 
     if (dy >= tweak.fall.dist)
     {
-        *trantype = TRAN_SWITCH;
+        *trantype = GOAL_TRAN_SET;
         return NPC_GOAL_BPLANKTONDIZZY;
     }
     return 0;
@@ -2583,7 +2583,7 @@ S32 zNPCGoalBPlanktonDizzy::Process(en_trantype* trantype, F32 dt, void* ctxt, x
         owner.delay += dt;
         if (owner.delay >= owner.stun_duration)
         {
-            *trantype = TRAN_SWITCH;
+            *trantype = GOAL_TRAN_SET;
             return owner.next_goal();
         }
     }
@@ -2628,7 +2628,7 @@ S32 zNPCGoalBPlanktonBeam::Process(en_trantype* trantype, F32 dt, void* ctxt, xS
     case SS_FIRE:      update_fire(dt);      break;
     case SS_COOL_DOWN: update_cool_down(dt); break;
     case SS_DONE:
-        *trantype = TRAN_SWITCH;
+        *trantype = GOAL_TRAN_SET;
         return owner.next_goal();
     }
     return 0;
