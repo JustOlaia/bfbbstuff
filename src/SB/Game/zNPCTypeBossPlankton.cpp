@@ -1707,7 +1707,7 @@ void zNPCBPlankton::update_aim_gun(F32 dt)
     xVec3Sub(&toPlayer, pLoc, &boneMat.pos);
     toPlayer.y = 0.0f; // project to XZ
 
-    F32 distXZ = xVec2Length((xVec2*)&toPlayer);
+    F32 distXZ = ((xVec2*)&toPlayer)->length();
     F32 yaw = xatan2f(boneMat.pos.y - pLoc->y, distXZ); // elevation angle
     // Clamp to [beam.gun_tilt_min, beam.gun_tilt_max]
     yaw = xClampf(yaw, tweak.beam.gun_tilt_min, tweak.beam.gun_tilt_max);
