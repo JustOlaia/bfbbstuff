@@ -2,6 +2,7 @@
 #include "zNPCMgr.h"
 #include "zEntDestructObj.h"
 #include "xMathInlines.h"
+#include "xGroup.h"
 #include "xDebug.h"
 
 #include <types.h>
@@ -1736,12 +1737,12 @@ void zNPCBPlankton::load_territory(S32 slot, xBase& obj)
 
     switch (obj.baseType)
     {
-    case 0x11: // xContainer - recurse over children
+    case 0x11:
     {
-        S32 childCount = xContainerGetCount(&obj);
+        S32 childCount = xGroupGetCount(grp);
         for (S32 i = 0; i < childCount; i++)
         {
-            xBase* child = xContainerGetItem(&obj, i);
+            xBase* child = (xBase*)xGroupGetItemPtr(grp, i);
             load_territory(slot, *child);
         }
         break;
@@ -1760,7 +1761,7 @@ void zNPCBPlankton::load_territory(S32 slot, xBase& obj)
         break;
     default:
         // Check if it's an NPC (zNPCCommon) - store as crony if slot available
-        if (xBase_IsType(&obj, NPC_TYPE_HASH))
+        if (((xNPCBasic*)&obj)->myNPCType == 0x4E544233)
         {
             if (t->crony_size < 8)
             {
@@ -1898,7 +1899,7 @@ void zNPCBPlankton::stun()
     {
         if (t->fuse != NULL)
         {
-            if (!xSceneIsVisible(t->fuse))
+            if (!zEntDestructObj_isDestroyed(t->fuse))
                 numVisible++;
         }
     }
@@ -1985,7 +1986,7 @@ S32 zNPCBPlankton::move_to_player_territory()
     // Gets the player's current standing platform from globals.player
     // Finds which territory slot matches the platform pointer
     // If found, sets active_territory to that slot and returns 1; else returns 0
-    xEnt* playerPlatform = (xEnt*)globals.player.standing_on; // offset 0x72C in scene area
+    xEnt* playerPlatform = (xEnt*)globals.player.ent.collis; // offset 0x72C in scene area
     if (playerPlatform == NULL || !(playerPlatform->flags & 1))
         return 0;
 
@@ -2008,7 +2009,7 @@ S32 zNPCBPlankton::move_to_player_territory()
 S32 zNPCBPlankton::player_left_territory() const
 {
     S32 idx = active_territory;
-    xEnt* playerPlatform = (xEnt*)globals.player.standing_on;
+    xEnt* playerPlatform = (xEnt*)globals.player.ent.collis;
     territory_data* t = &territory[idx];
 
     // If territory has no cronies left and player's platform matches: still in territory
@@ -2129,7 +2130,7 @@ void zNPCBPlankton::fall(F32 accel, F32 maxVel)
     move.max_vel.x = 0.0f;
     move.max_vel.y = -maxVel;
     move.max_vel.z = 0.0f;
-    move.vel =  xVec3::zero; //likely wrong figured out xVec3::zero; does not exist
+    move.vel.x = 0.0f; move.vel.y = 0.0f; move.vel.z = 0.0f;
 }
 
 // 0x8016DAEC
@@ -2139,7 +2140,8 @@ void zNPCBPlankton::aim_gun(xAnimPlay* play, xQuat* tilt, xVec3* dest, int bone)
     // copies result to dest for beam emission origin
     if (flag.aim_gun)
     {
-        xQuatToMatrix(tilt, (xMat3x3*)(play + 0x150));
+        //xQuatToMat(tilt, (xMat3x3*)(play + 0x150)); if the one bellw doesnt work then this
+        xQuatToMat(const xQuat*, xMat3x3*)
         // dest receives the bone world position from model mat
     }
 }
@@ -2434,7 +2436,7 @@ S32 zNPCGoalBPlanktonHunt::Process(en_trantype* trantype, F32 dt, void* ctxt, xS
 
     xVec3 diff;
     xVec3Sub(&diff, &plankLoc, pLoc);
-    F32 distSq = xVec3LengthSq(&diff);
+    F32 distSq = xVec3Length2(&diff);
     F32 beamDist = tweak.hunt.beam_dist;
 
     if (distSq <= beamDist * beamDist)
