@@ -2,6 +2,7 @@
 #include "zNPCMgr.h"
 #include "zEntDestructObj.h"
 #include "xMathInlines.h"
+#include "xMath3.h"
 #include "xGroup.h"
 #include "xDebug.h"
 
@@ -1716,7 +1717,7 @@ void zNPCBPlankton::update_aim_gun(F32 dt)
     else if (yaw > tweak.beam.gun_tilt_max) yaw = tweak.beam.gun_tilt_max;
 
     // Apply result to gun_tilt quaternion (offset 0x2CC on Plankton)
-    xQuatFromAxisAngle(&gun_tilt, &xVec3::right, yaw);
+    xQuatFromAxisAngle(&gun_tilt, &g_X3, yaw);
 }
 
 // 0x8016C960 - Returns non-zero if player has health (i.e. player is alive and can be damaged)
