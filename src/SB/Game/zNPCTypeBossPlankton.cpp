@@ -1525,7 +1525,7 @@ crony = NULL;
 for (S32 i = 0; i < npclist->cnt; i++)
 {
     xBase* obj = (xBase*)npclist->list[i];
-    U32 typeHash = xBase_GetTypeHash(obj);
+    U32 typeHash = (U32)((xNPCBasic*)obj)->myNPCType;
     if (typeHash == 0x4E544233)
     {
         crony = (zNPCBoss*)obj;
