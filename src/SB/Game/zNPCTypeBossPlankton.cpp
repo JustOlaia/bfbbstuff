@@ -73,6 +73,14 @@ namespace
     static U32 sound_asset_ids[6][10];
     static sound_data_type sound_data[6];
 
+    struct say_entry
+   {
+       U32 say[2];
+       S32 size;
+   };
+
+    static say_entry say_set[8]; // static table at -0x7fd9+0x1394 in DOL
+
     static const sound_asset sound_assets[29] = {
         { 0, "RSB_foot_loop", 0, 3 },       { 0, "fan_loop", 0, 3 },
         { 0, "Rocket_burn_loop", 0, 3 },    { 0, "RP_whirr_loop", 0, 3 },
