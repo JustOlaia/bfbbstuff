@@ -1670,7 +1670,7 @@ void zNPCBPlankton::update_follow_player(F32 dt)
     if (follow.delay >= follow.max_delay)
     {
         follow.delay = 0.0f;
-        follow.max_delay = xRandFloatRange(tweak.follow.min_delay, tweak.follow.max_delay);
+        follow.max_delay = tweak.follow.min_delay + xurand() * (tweak.follow.max_delay - tweak.follow.min_delay);
         // Recompute orbit destination angle around player
         // (calls random_orbit equivalent logic)
     }
