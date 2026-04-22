@@ -1926,23 +1926,8 @@ S32 zNPCBPlankton::cronies_dead()
 // 0x8016D4C4
 void zNPCBPlankton::impart_velocity(const xVec3* impulse)
 {
-    // Only applies in MOVE_ORBIT mode
-    if (flag.move != MOVE_ORBIT)
-        return;
-
-    // Convert impulse from world space to ring (orbit) space
-    xVec3 ringVel;
-    world_to_ring_vel(*impulse, location(), orbit.center, &ringVel);
-
-    // Clamp ring Y to 0, apply hit_max_dist velocity cap
-    ringVel.y = 0.0f;
-    F32 maxDist = tweak.hit_max_dist + orbit.center.y + orbit.radius;
-    // ... normalize and scale by hit_vel
-    xVec3Normalize(&ringVel, &ringVel);
-    xVec3Scale(&ringVel, &ringVel, tweak.hit_vel);
-
-    // Feed into move.vel
-    ring_to_world_vel(ringVel, location(), orbit.center, &move.vel);
+    // TODO: world_to_ring_vel / ring_to_world_vel not yet implemented
+    // Full orbit velocity conversion logic goes here
 }
 
 // 0x8016D5E0
