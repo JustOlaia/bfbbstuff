@@ -1395,7 +1395,7 @@ void zNPCBPlankton::Damage(en_NPC_DAMAGE_TYPE damageType, xBase* src, const xVec
         {
             // Scale hitPos by tweak.hit_vel (tweak+0x28), compute velocity
             xVec3 scaledPos;
-            xVec3Scale(&scaledPos, hitPos, tweak.hit_vel);
+            xVec3SMul(&scaledPos, hitPos, tweak.hit_vel);
             impart_velocity(&scaledPos);
         }
         stun();
