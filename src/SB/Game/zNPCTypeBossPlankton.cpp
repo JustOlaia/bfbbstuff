@@ -1908,7 +1908,7 @@ void zNPCBPlankton::stun()
 S32 zNPCBPlankton::cronies_dead() const
 {
     // Checks all cronies in active territory; returns 1 if all are dead (IsAlive==0)
-    territory_data* t = &territory[active_territory];
+    const territory_data* t = &territory[active_territory];
     zNPCCommon** cronies = t->crony;
     S32 cronyCount = t->crony_size;
 
@@ -1998,7 +1998,7 @@ S32 zNPCBPlankton::player_left_territory() const
 {
     S32 idx = active_territory;
     xEnt* playerPlatform = (xEnt*)globals.player.ent.collis;
-    territory_data* t = &territory[idx];
+    const territory_data* t = &territory[idx];
 
     // If territory has no cronies left and player's platform matches: still in territory
     if (t->crony_size <= 0)
@@ -2011,7 +2011,7 @@ S32 zNPCBPlankton::player_left_territory() const
         return 0;
 
     // Check all other territories: if player is on a different territory's platform → left
-    territory_data* t2 = &territory[0];
+    const territory_data* t2 = &territory[0];
     for (S32 i = 0; i < territory_size; i++, t2++)
     {
         if (t2->crony_size <= 0 && t2->platform == playerPlatform && i != idx)
