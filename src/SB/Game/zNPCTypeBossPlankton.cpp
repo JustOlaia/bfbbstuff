@@ -1832,8 +1832,6 @@ void zNPCBPlankton::setup_beam()
     beam.attach_effects(xLaserBoltEmitter::FX_WHEN_IMPACT, beam_impact_effect, 3);
     beam.attach_effects(xLaserBoltEmitter::FX_WHEN_DEATH,  beam_death_effect,  1);
     beam.attach_effects(xLaserBoltEmitter::FX_WHEN_KILL,   beam_kill_effect,   1);
-    beam_charge = (xParEmitter*)xParFindByName("plankton_beam_charge");
-    // stores beam_charge pointer at owner offset 0x44C
     beam_charge = (xParEmitter*)xParFindByName("plankton_beam_zap");
 }
 
