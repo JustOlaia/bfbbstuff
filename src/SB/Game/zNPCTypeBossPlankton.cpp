@@ -1583,7 +1583,7 @@ void zNPCBPlankton::update_dialog(F32 dt)
         return;
 
     // Check if player health changed (say_hit_player)
-    U32 playerHP = globals.player.health; // offset 0x16B0 in globals struct area
+    U32 playerHP = globals.player.Health; // offset 0x16B0 in globals struct area
     if (playerHP < old_player_health && playerHP != 0)
     {
         say(7, 0, false); // say_hit_player set, no randomize
