@@ -1723,7 +1723,7 @@ void zNPCBPlankton::update_aim_gun(F32 dt)
 // 0x8016C960 - Returns non-zero if player has health (i.e. player is alive and can be damaged)
 // Assembly: loads globals.player.health (offset 0x1AFC in the globals area),
 // returns (health != 0) ? 1 : 0 via neg/or/srawi idiom
-void zNPCBPlankton::check_player_damage()
+S32 zNPCBPlankton::check_player_damage()
 {
     U32 hp = globals.player.health; // offset 0x1AFC
     return (hp != 0) ? 1 : 0;
