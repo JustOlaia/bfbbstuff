@@ -1616,7 +1616,7 @@ void zNPCBPlankton::update_dialog(F32 dt)
     {
         if (t->crony_size > 0 && t->fuse != NULL && !t->fuse_destroyed)
         {
-            if (!xSceneIsVisible(t->fuse)) // fuse disappeared = destroyed
+            if (!zEntDestructObj_isDestroyed(t->fuse)) // fuse destroyed
             {
                 // Get fuse position
                 xVec3 fusePos;
