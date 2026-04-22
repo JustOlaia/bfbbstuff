@@ -2117,14 +2117,7 @@ void zNPCBPlankton::fall(F32 accel, F32 maxVel)
 // 0x8016DAEC
 void zNPCBPlankton::aim_gun(xAnimPlay* play, xQuat* tilt, xVec3* dest, int bone)
 {
-    // If flag.aim_gun is set: xQuatToMatrix(tilt) into model bone 0x150+bone,
-    // copies result to dest for beam emission origin
-    if (flag.aim_gun)
-    {
-        //xQuatToMat(tilt, (xMat3x3*)(play + 0x150)); if the one bellw doesnt work then this
-        xQuatToMat(const xQuat*, xMat3x3*)
-        // dest receives the bone world position from model mat
-    }
+    // TODO: 0x8016DAEC - apply gun tilt quaternion to bone matrix
 }
 
 // -----------------------------------------------------------------------
