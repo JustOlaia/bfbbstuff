@@ -64,18 +64,6 @@ namespace
         U32 flags;
     };
 
-        fx_type_enum type;
-        fx_orient_enum orient;
-        F32 rate;
-        union
-        {
-            xParEmitter* par;
-            xDecalEmitter* decal;
-            effect_callback callback;
-        };
-        F32 irate;
-    };
-
     static xLaserBoltEmitter::effect_data beam_launch_effect[2];
     static xLaserBoltEmitter::effect_data beam_head_effect[1];
     static xLaserBoltEmitter::effect_data beam_impact_effect[3];
