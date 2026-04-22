@@ -1862,7 +1862,7 @@ U32 zNPCBPlankton::crony_attacking() const
 void zNPCBPlankton::stun()
 {
     // Get current goal from psyche
-    S32 curGoal = psy_instinct->GetCurrentGoal();
+    S32 curGoal = psy_instinct->GIDOfActive();
     S32 goalOffset = curGoal - NPC_GOAL_BPLANKTONSTUN; // relative to stun/fall/dizzy range
 
     // Don't re-stun if already in stun/fall/dizzy (offset 0 or 1 = STUN/FALL)
@@ -2044,7 +2044,7 @@ void zNPCBPlankton::say(int saySet, int unused, bool random)
 void zNPCBPlankton::sickum()
 {
     // If current goal is already HUNT, don't sickum again
-    S32 curGoal = psy_instinct->GetCurrentGoal();
+    S32 curGoal = psy_instinct->GIDOfActive();
     if (curGoal == NPC_GOAL_BPLANKTONHUNT)
         return;
 
