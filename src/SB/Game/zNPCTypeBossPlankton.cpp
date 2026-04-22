@@ -64,16 +64,6 @@ namespace
         U32 flags;
     };
 
-    struct bolt;
-
-    struct effect_data
-    {
-        struct effect_callback
-        {
-            void (*fp)(bolt&, void*);
-            void* context;
-        };
-
         fx_type_enum type;
         fx_orient_enum orient;
         F32 rate;
@@ -86,11 +76,11 @@ namespace
         F32 irate;
     };
 
-    static effect_data beam_launch_effect[2]; // size: 0x30, address: 0x4E0E60
-    static effect_data beam_head_effect[1]; // size: 0x18, address: 0x4E0E90
-    static effect_data beam_impact_effect[3]; // size: 0x48, address: 0x4E0EB0
-    static effect_data beam_death_effect[1]; // size: 0x18, address: 0x5E53F0
-    static effect_data beam_kill_effect[1];
+    static xLaserBoltEmitter::effect_data beam_launch_effect[2];
+    static xLaserBoltEmitter::effect_data beam_head_effect[1];
+    static xLaserBoltEmitter::effect_data beam_impact_effect[3];
+    static xLaserBoltEmitter::effect_data beam_death_effect[1];
+    static xLaserBoltEmitter::effect_data beam_kill_effect[1];
 
     static U32 sound_asset_ids[6][10];
     static sound_data_type sound_data[6];
