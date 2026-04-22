@@ -1625,7 +1625,7 @@ void zNPCBPlankton::update_dialog(F32 dt)
                 // Compute dist sq to player
                 xVec3 diff;
                 xVec3Sub(&diff, &fusePos, pLoc);
-                F32 distSq = xVec3LengthSq(&diff);
+                F32 distSq = xVec3Length2(&diff);
                 F32 fuseDist = tweak.help.fuse_dist;
 
                 if (distSq <= fuseDist * fuseDist)
