@@ -1496,7 +1496,7 @@ void zNPCBPlankton::refresh_orbit()
             xVec3Copy(&orbit.center, pLoc);
             orbit.center.y += tweak.hunt.height + tweak.arena.attack.height; // (tweak+0x8C/0x90)
             orbit.radius = tweak.hunt.radius;
-            xVec3Sub_temp(&orbit.center, orbit.center, move.dest); // approach dest
+            xVec3Sub(&orbit.center, &orbit.center, &move.dest); // approach dest
         }
         else if (flag.attacking)
         {
