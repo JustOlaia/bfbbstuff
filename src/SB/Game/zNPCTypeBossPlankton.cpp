@@ -1697,7 +1697,7 @@ void zNPCBPlankton::update_aim_gun(F32 dt)
 
     // Get bone 0x15 (gun bone) matrix from model
     xMat4x3 boneMat;
-    xModelGetBoneMatrix(model, &boneMat, 0x15);
+    xModelGetBoneMat(boneMat, *model, 0x15);
 
     // Get player location
     xVec3* pLoc = get_player_loc();
