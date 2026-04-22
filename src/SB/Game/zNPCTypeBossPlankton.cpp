@@ -1711,7 +1711,8 @@ void zNPCBPlankton::update_aim_gun(F32 dt)
     F32 distXZ = ((xVec2*)&toPlayer)->length();
     F32 yaw = xatan2(boneMat.pos.y - pLoc->y, distXZ); // elevation angle
     // Clamp to [beam.gun_tilt_min, beam.gun_tilt_max]
-    yaw = xClampf(yaw, tweak.beam.gun_tilt_min, tweak.beam.gun_tilt_max);
+    if (yaw < tweak.beam.gun_tilt_min) yaw = tweak.beam.gun_tilt_min;
+    else if (yaw > tweak.beam.gun_tilt_max) yaw = tweak.beam.gun_tilt_max;
 
     // Apply result to gun_tilt quaternion (offset 0x2CC on Plankton)
     xQuatFromAxisAngle(&gun_tilt, &xVec3::right, yaw);
