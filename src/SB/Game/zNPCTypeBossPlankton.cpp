@@ -1158,7 +1158,6 @@ void zNPCBPlankton::Reset()
     // Reset turn
     turn.dir.x = 0.0f;
     turn.dir.y = 0.0f;
-    turn.vel = 0.0f;
 
     old_player_health = 0;
 
