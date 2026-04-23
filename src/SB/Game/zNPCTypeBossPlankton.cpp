@@ -1515,12 +1515,11 @@ void zNPCBPlankton::scan_cronies()
 {
     st_XORDEREDARRAY* npclist = zNPCMgr_GetNPCList();
     crony = NULL;
-    S32 count = npclist->cnt;
     S32 i = 0;
-    while (i < count)
+    while (i < npclist->cnt)
     {
-        zNPCCommon* obj = (zNPCCommon*)((U32*)npclist->list)[i];
-        U32 typeHash = obj->GetNPCType(); // vtable call, not direct field
+        zNPCCommon* obj = ((zNPCCommon**)npclist->list)[i];
+        S32 typeHash = obj->SelfType(); // vtable call, not direct field
         if (typeHash == 0x4E544233)
         {
             crony = (zNPCBoss*)obj;
