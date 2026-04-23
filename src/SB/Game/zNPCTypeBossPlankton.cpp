@@ -2011,8 +2011,8 @@ S32 zNPCBPlankton::player_left_territory()
 }
 
 // 0x8016D77C
-static void NF_SayLine(zNPCNewsFish* nf, U32 sndid, S32 slot);  
-static void NF_SayInterrupt(zNPCNewsFish* nf, U32 sndid, S32 size, S32 unk, S32 anim);
+//static void NF_SayLine(zNPCNewsFish* nf, U32 sndid, S32 slot);  
+//static void NF_SayInterrupt(zNPCNewsFish* nf, U32 sndid, S32 size, S32 unk, S32 anim);
 
 void zNPCBPlankton::say(int saySet, int unused, bool random)
 {
@@ -2021,12 +2021,12 @@ void zNPCBPlankton::say(int saySet, int unused, bool random)
 
     if (random)
     {
-        NF_SayLine(newsfish, say_set[saySet].say[0], 1);
-        NF_SayLine(newsfish, say_set[saySet].say[1], 2);
+        newsfish->SayLine(say_set[saySet].say[0], 1);
+        newsfish->SayLine(say_set[saySet].say[1], 2);
     }
     else
     {
-        NF_SayInterrupt(newsfish, say_set[saySet].say[0], say_set[saySet].size, unused, -1);
+        newsfish->SayInterrupt(say_set[saySet].say[0], say_set[saySet].say[1], (S32)unused, -1);
     }
 }
 
