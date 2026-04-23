@@ -2254,7 +2254,7 @@ S32 zNPCGoalBPlanktonAmbush::Exit(F32 dt, void* ctxt)
 
 S32 zNPCGoalBPlanktonAmbush::Process(en_trantype* trantype, F32 dt, void* ctxt, xScene* xscn)
 {
-    territory_data& t = owner.territory[owner.active_territory];
+    zNPCBPlankton::territory_data& t = owner.territory[owner.active_territory];
 
     owner.ambush_delay -= dt;
     if (owner.ambush_delay <= 0.0f)
