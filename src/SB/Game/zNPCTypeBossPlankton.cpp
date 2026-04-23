@@ -2829,17 +2829,13 @@ S32 zNPCBPlankton::IsAlive()
 // 0x8016FCFC
 void zNPCBPlankton::take_control()
 {
-    // Calls crony->TakeControl() via vtable offset 0xD0 if crony != NULL
-    if (crony != NULL)
-        crony->TakeControl();
+    // TODO: 0x8016FCFC - crony->TakeControl() via vtable 0xD0, not yet identified
 }
 
 // 0x80170014
 void zNPCBPlankton::give_control()
 {
-    // Calls crony->GiveControl() via vtable offset 0xD4 if crony != NULL
-    if (crony != NULL)
-        crony->GiveControl();
+    // TODO: 0x80170014 - crony->GiveControl() via vtable 0xD4, not yet identified
 }
 
 void zNPCBPlankton::face_player()
