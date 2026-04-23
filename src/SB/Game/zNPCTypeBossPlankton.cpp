@@ -2056,8 +2056,8 @@ void zNPCBPlankton::here_boy()
 void zNPCBPlankton::follow_player()
 {
     flag.follow = FOLLOW_PLAYER;
-    follow.delay = 0.0f;
     follow.max_delay = 0.0f;
+    follow.delay = 0.0f;
     flag.move = MOVE_ORBIT;
 }
 
@@ -2065,8 +2065,8 @@ void zNPCBPlankton::follow_player()
 void zNPCBPlankton::follow_camera()
 {
     flag.follow = FOLLOW_CAMERA;
-    follow.delay = 0.0f;
     follow.max_delay = 0.0f;
+    follow.delay = 0.0f;
     flag.move = MOVE_ORBIT;
 }
 
