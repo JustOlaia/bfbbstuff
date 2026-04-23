@@ -40,8 +40,8 @@ struct zNPCBPlankton : zNPCBoss
 
     enum mode_enum
     {
-    	MODE_HARASS
-        MODE_BUDDY,
+    	MODE_HARASS,
+        MODE_BUDDY
     };
 
     // Confirmed from DOL offsets: dest=0x474, vel=0x480, accel=0x48c, max_vel=0x498
