@@ -2309,7 +2309,7 @@ S32 zNPCGoalBPlanktonFlank::Exit(F32 dt, void* ctxt)
 S32 zNPCGoalBPlanktonFlank::Process(en_trantype* trantype, F32 dt, void* ctxt, xScene* xscn)
 {
     const xVec3& loc = owner.location();
-    F32 dy = fabsf(loc.y - owner.orbit.center.y); // offset 0x454
+    F32 dy = xabs(loc.y - owner.orbit.center.y); // offset 0x454
 
     if (dy < tweak.min_arena_dist) // small epsilon / min dist
     {
