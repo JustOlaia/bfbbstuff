@@ -2017,18 +2017,6 @@ S32 zNPCBPlankton::player_left_territory()
 void zNPCBPlankton::say(int saySet, int unused, bool random)
 {
     //TODO: figure something out for this SayLine its not identified, the newsfish code is not fully decompiled yet probably
-    //if (newsfish == NULL)
-        //return;
-
-    //if (random)
-    //{
-        //newsfish->SayLine(say_set[saySet].say[0], 1);
-        //newsfish->SayLine(say_set[saySet].say[1], 2);
-    //}
-    //else
-    //{
-        //newsfish->SayInterrupt(say_set[saySet].say[0], say_set[saySet].say[1], (S32)unused, -1);
-    //}
 }
 
 // 0x8016D824
