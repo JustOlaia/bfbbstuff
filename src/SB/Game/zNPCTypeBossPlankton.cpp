@@ -1909,6 +1909,8 @@ void zNPCBPlankton::stun()
       case 4:  sayIdx = 3; break;
       default: sayIdx = (numVisible == 1) ? 6 : 3; break;
    }
+    say(sayIdx, 0, false);
+ }
 
 // 0x8016D440
 S32 zNPCBPlankton::cronies_dead()
