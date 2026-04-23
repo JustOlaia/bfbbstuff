@@ -2669,7 +2669,7 @@ S32 zNPCGoalBPlanktonBeam::update_fire(F32 dt)
         xVec3Normalize(&dir, &dir);
         // offset origin by emit_dist along dir
         xVec3 offset;
-        xVec3Scale(&offset, &dir, tweak.beam.emit_dist);
+        xVec3SMul(&offset, &dir, tweak.beam_emit_dist);
         xVec3Add(&origin, &origin, &offset);
 
         owner.beam.emit(origin, dir, &tweak.beam.fx, beam_launch_effect, 2,
