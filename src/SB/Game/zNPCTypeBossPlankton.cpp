@@ -2672,8 +2672,7 @@ S32 zNPCGoalBPlanktonBeam::update_fire(F32 dt)
         xVec3SMul(&offset, &dir, tweak.beam.emit_dist);
         xVec3Add(&origin, &origin, &offset);
 
-        owner.beam.emit(origin, dir, &tweak.beam.fx, beam_launch_effect, 2,
-                        beam_head_effect, 1, beam_impact_effect, 3);
+        owner.beam.emit(origin, dir);
     }
 
     if (owner.delay >= tweak.beam.time_fire)
