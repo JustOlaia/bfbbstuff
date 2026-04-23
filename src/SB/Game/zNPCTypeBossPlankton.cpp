@@ -1723,7 +1723,7 @@ void zNPCBPlankton::update_aim_gun(F32 dt)
 S32 zNPCBPlankton::check_player_damage()
 {
     U32 hp = globals.player.Health; // offset 0x1AFC
-    return (hp != 0) ? 1 : 0;
+    return (hp | (U32)(-(S32)hp)) >> 31; //if it doesnt match try return 0;
 }
 
 // 0x8016CA7C - Loads a territory slot from a linked xBase object
@@ -1958,7 +1958,8 @@ S32 zNPCBPlankton::have_cronies()
     // Returns 1 if crony_size > 0, else 0
     // offset 0x4E4 = territory[active_territory].crony_size via mulli+add
     S32 cronySize = territory[active_territory].crony_size;
-    return (cronySize != 0) ? 1 : 0;
+    U32 r = (U32)cronySize;
+    return (S32)((r | (U32)(-(S32)r)) >> 31);
 }
 
 // 0x8016D658
