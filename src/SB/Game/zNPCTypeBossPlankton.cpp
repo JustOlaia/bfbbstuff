@@ -2291,7 +2291,7 @@ S32 zNPCGoalBPlanktonFlank::Enter(F32 dt, void* ctxt)
     // Generate a random flank orbit position at arena.attack.radius
     xVec3 flankDest;
     random_orbit(owner.orbit.center, 0.0f, tweak.arena.attack.radius, &flankDest);
-    owner.set_location(flankDest);
+    owner.location() = flankDest;
 
     owner.refresh_orbit();
     owner.follow_camera();
