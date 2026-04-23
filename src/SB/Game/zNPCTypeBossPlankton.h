@@ -133,6 +133,7 @@ struct zNPCBPlankton : zNPCBoss
         xVec2 dir;      // 0x460
         F32 accel;      // 0x46c
         F32 max_vel;    // 0x470
+        F32 min_vel; //if it doesnt match then idk
     } turn;
 
     // Move info: confirmed addi r3, r31, 0x474 for dest, 0x48c for accel, 0x498 for max_vel
