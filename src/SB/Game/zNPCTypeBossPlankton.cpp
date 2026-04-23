@@ -2497,8 +2497,8 @@ S32 zNPCGoalBPlanktonStun::Exit(F32 dt, void* ctxt)
 S32 zNPCGoalBPlanktonStun::Process(en_trantype* trantype, F32 dt, void* ctxt, xScene* xscn)
 {
     xAnimPlay* play = owner.model->Anim;
-    xAnimState* curState = xAnimPlay_GetCurrState(play);
-    xAnimState* stunEndState = xAnimTableGetStateByHash(play->Table, g_hash_bossanim[ANIM_stun_end]);
+    xAnimState* curState = play->Single->State;
+    xAnimState* stunEndState = xAnimTableGetStateID(play->Table, g_hash_bossanim[ANIM_stun_end]);
 
     if (curState == stunEndState)
     {
@@ -2575,8 +2575,8 @@ S32 zNPCGoalBPlanktonDizzy::Exit(F32 dt, void* ctxt)
 S32 zNPCGoalBPlanktonDizzy::Process(en_trantype* trantype, F32 dt, void* ctxt, xScene* xscn)
 {
     xAnimPlay* play = owner.model->Anim;
-    xAnimState* curState = xAnimPlay_GetCurrState(play);
-    xAnimState* stunEndState = xAnimTableGetStateByHash(play->Table, g_hash_bossanim[ANIM_stun_end]);
+    xAnimState* curState = play->Single->State;
+    xAnimState* stunEndState = xAnimTableGetStateID(play->Table, g_hash_bossanim[ANIM_stun_end]);
 
     if (curState == stunEndState)
     {
@@ -2687,9 +2687,8 @@ S32 zNPCGoalBPlanktonBeam::update_fire(F32 dt)
 S32 zNPCGoalBPlanktonBeam::update_cool_down(F32 dt)
 {
     xAnimPlay* play = owner.model->Anim;
-    xAnimState* curState = xAnimPlay_GetCurrState(play);
-    xAnimState* beamEndState = xAnimTableGetStateByHash(play->Table,
-                                   g_hash_bossanim[ANIM_attack_beam_end]);
+    xAnimState* curState = play->Single->State;
+    xAnimState* beamEndState = xAnimTableGetStateID(play->Table, g_hash_bossanim[ANIM_attack_beam_end]);
 
     if (curState == beamEndState)
     {
