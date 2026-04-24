@@ -1150,7 +1150,7 @@ void zNPCBPlankton::Reset()
 
     zNPCBPlankton::face_player();
 
-turn.vel = 0.0f
+turn.vel = 0.0f;
 move.vel.x = move.vel.y = move.vel.z = 0.0f;
 xVec3Copy(&move.dest, get_player_loc());
 flag.move = MOVE_ORBIT;
