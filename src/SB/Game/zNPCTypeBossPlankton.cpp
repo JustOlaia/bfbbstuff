@@ -1150,8 +1150,8 @@ void zNPCBPlankton::Reset()
 
     zNPCBPlankton::face_player();
 
-    turn.vel = 0.0f;
-    xVec3Init(&move.vel, 0.0f, 0.0f, 0.0f);
+    turn.vel = f1586;
+    xVec3Init(&move.vel, f1586, f1586, f1586);
     xVec3Copy(&move.dest, get_player_loc());
     flag.move = MOVE_ORBIT;
     ambush_delay = 0.0f;
