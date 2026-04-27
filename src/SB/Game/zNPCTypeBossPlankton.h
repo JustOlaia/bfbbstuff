@@ -131,7 +131,6 @@ struct zNPCBPlankton : zNPCBoss
     struct
     {
         xVec2 dir;      // 0x460
-        U8 _pad[4];     // 0x464 - alignment padding
         F32 vel;
         F32 accel;      // 0x46c
         F32 max_vel;    // 0x470
