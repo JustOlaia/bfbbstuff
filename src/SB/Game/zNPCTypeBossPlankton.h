@@ -101,7 +101,8 @@ struct zNPCBPlankton : zNPCBoss
     F32 delay;              // 0x2c8
     xQuat gun_tilt;         // 0x2cc (4 floats = 0x10 bytes)
     F32 ambush_delay;       // 0x2dc
-    F32 stun_duration;      // 0x2e4 (NOTE: beam_duration not confirmed, stfs at 0x2dc = ambush_delay)
+    F32 beam_duration;      // 0x2e0
+    F32 stun_duration;      // 0x2e4
 
     // 0x2e8: confirmed xDecalEmitter (init'd with li r4, 0x7f, string "Plankton's Beam Rings")
     xDecalEmitter beam_ring;  // 0x2e8
@@ -130,6 +131,7 @@ struct zNPCBPlankton : zNPCBoss
     struct
     {
         xVec2 dir;      // 0x460
+        U8 _pad[4];     // 0x464 - alignment padding
         F32 vel;
         F32 accel;      // 0x46c
         F32 max_vel;    // 0x470
