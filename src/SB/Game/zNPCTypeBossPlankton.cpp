@@ -2118,7 +2118,7 @@ S32 zNPCGoalBPlanktonIdle::Process(en_trantype* trantype, F32 dt, void* ctxt, xS
         return 0;
     }
 
-    if (xfabs(yawRate) <= tweak.follow.max_ang)
+    if (xabs(yawRate) <= tweak.follow.max_ang)
         return 0;
 
     apply_yaw(yaw);
