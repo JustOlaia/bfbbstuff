@@ -1945,7 +1945,7 @@ S32 zNPCBPlankton::have_cronies()
 // 0x8016D658
 S32 zNPCBPlankton::move_to_player_territory()
 {
-    xEnt* player = globals.player;  // loads via lis/addi/lwz 0x72c
+    xEnt* player = zPlayerGlobals->globals.player;  // loads via lis/addi/lwz 0x72c
     if (!(player->flags & 1))
         return 0;
     if (player->owner == NULL)  // lwz 0x14(player)
