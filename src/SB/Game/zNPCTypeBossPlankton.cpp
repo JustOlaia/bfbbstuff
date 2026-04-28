@@ -1946,6 +1946,7 @@ S32 zNPCBPlankton::have_cronies()
 S32 zNPCBPlankton::move_to_player_territory()
 {
     //TODO: to make it fully match we will probably need that one pdf (not the bad kind of pdf colega)
+    return 0;
 }
 
 // 0x8016D6D4
