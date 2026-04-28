@@ -2109,15 +2109,19 @@ S32 zNPCGoalBPlanktonIdle::Process(en_trantype* trantype, F32 dt, void* ctxt, xS
         return NPC_GOAL_BPLANKTONHUNT;
     }
 
-    // get_yaw fills yaw/yawRate using orbit geometry
     F32 yaw, yawRate;
     get_yaw(yaw, yawRate);
 
-    // Check follow delay timer: when elapsed, pick new orbit position
-    F32 delay = owner.follow.delay;       // offset 0x4A4
-    F32 maxDelay = owner.follow.max_delay; // offset 0x4A8
-    // (apply idle drift logic here using yaw)
+    if (owner.follow.delay == owner.follow.max_delay)
+    {
+        apply_yaw(yaw);
+        return 0;
+    }
 
+    if (xfabs(yawRate) <= tweak.follow.max_ang)
+        return 0;
+
+    apply_yaw(yaw);
     return 0;
 }
 
