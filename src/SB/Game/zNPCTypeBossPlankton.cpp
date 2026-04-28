@@ -2332,7 +2332,7 @@ xFactoryInst* zNPCGoalBPlanktonHunt::create(S32 who, RyzMemGrow* grow, void* inf
 S32 zNPCGoalBPlanktonHunt::Enter(F32 dt, void* ctxt)
 {
     owner.reappear();
-    player_loc = *get_player_loc();
+    get_player_loc();
     owner.flag.attacking = true;
     owner.delay = 0.0f;
     owner.reset_speed();
