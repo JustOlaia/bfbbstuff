@@ -1945,21 +1945,7 @@ S32 zNPCBPlankton::have_cronies()
 // 0x8016D658
 S32 zNPCBPlankton::move_to_player_territory()
 {
-    xEnt* player = (xEnt*)globals.player.ent.collis;  // loads via lis/addi/lwz 0x72c
-    if (!(player->flags & 1))
-        return 0;
-    if (player->owner == NULL)  // lwz 0x14(player)
-        return 0;
-
-    for (S32 i = 0; i < territory_size; i++)
-    {
-        if (territory[i].crony_size <= 0 && territory[i].platform == player)
-        {
-            active_territory = i;
-            return 1;
-        }
-    }
-    return 0;
+    //TODO: to make it fully match we will probably need that one pdf (not the bad kind of pdf colega)
 }
 
 // 0x8016D6D4
