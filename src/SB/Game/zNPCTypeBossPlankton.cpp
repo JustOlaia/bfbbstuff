@@ -2287,11 +2287,12 @@ xFactoryInst* zNPCGoalBPlanktonEvade::create(S32 who, RyzMemGrow* grow, void* in
 S32 zNPCGoalBPlanktonEvade::Enter(F32 dt, void* ctxt)
 {
     owner.reappear();
-    owner.flag.attacking = false;
-    owner.flag.follow = zNPCBPlankton::FOLLOW_NONE;
-    evade_delay = tweak.evade.duration;
+    owner.flag.attacking = true;
     owner.reset_speed();
-    owner.refresh_orbit();
+    owner.face_player();
+    owner.flag.follow = zNPCBPlankton::FOLLOW_NONE;
+    owner.delay = 0.0f;
+    evade_delay = tweak.evade.move_delay_min + xurand() * (tweak.evade.move_delay_max - tweak.evade.move_delay_min);
     return zNPCGoalCommon::Enter(dt, ctxt);
 }
 
