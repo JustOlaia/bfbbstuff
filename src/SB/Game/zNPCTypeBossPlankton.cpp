@@ -1809,8 +1809,8 @@ void zNPCBPlankton::reset_beam()
 // 0x8016CEB4
 void zNPCBPlankton::vanish()
 {
-    // Clear visible flag (bit 0 of flags at 0x18), set culled flag (bit 6)
-    flags = (flags & 0xFE) | 0x40;
+    flags &= ~1;
+    flags |= 0x40;
     pflags = 0;
     moreFlags = 0;
     chkby = 0;
@@ -1823,15 +1823,14 @@ void zNPCBPlankton::vanish()
 // 0x8016CF0C
 void zNPCBPlankton::reappear()
 {
-    // Set visible (bit 0), clear culled (bit 6)
-    flags = (flags | 1) & 0xBF;
+    flags |= 1;
+    flags &= ~0x40;
     pflags = 0;
     moreFlags = 0x10;
     chkby = 0x10;
     penby = 0x10;
     flags2.flg_colCheck = 0;
     flags2.flg_penCheck = 0;
-    // Play hover sound at bound position
     play_sound(SOUND_HOVER, (xVec3*)&bound.pad[3], 1.0f);
 }
 
@@ -1946,16 +1945,15 @@ S32 zNPCBPlankton::have_cronies()
 // 0x8016D658
 S32 zNPCBPlankton::move_to_player_territory()
 {
-    xEnt* playerPlatform = (xEnt*)globals.player.ent.collis;
-    if (!(*(U32*)((U8*)playerPlatform + 0xc) & 1))
+    xEnt* player = zGetPlayer();  // loads via lis/addi/lwz 0x72c
+    if (!(player->flags & 1))
         return 0;
-    void* field14 = *(void**)((U8*)playerPlatform + 0x14);
-    if (field14 == NULL)
+    if (player->owner == NULL)  // lwz 0x14(player)
         return 0;
 
     for (S32 i = 0; i < territory_size; i++)
     {
-        if (territory[i].crony_size <= 0 && territory[i].platform == playerPlatform)
+        if (territory[i].crony_size <= 0 && territory[i].platform == player)
         {
             active_territory = i;
             return 1;
