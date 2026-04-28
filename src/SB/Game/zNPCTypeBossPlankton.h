@@ -67,9 +67,9 @@ struct zNPCBPlankton : zNPCBoss
     //   +0x38 fuse_detect_time (F32)      - stfs f0, 0x38(r5) in reset_territories
     struct territory_data {
     zMovePoint* origin;         // +0x00
-    xTimer* timer;              // +0x04  ← swapped
+    xEnt* platform;             // +0x04
     zEntDestructObj* fuse;      // +0x08
-    xEnt* platform;             // +0x0c  ← swapped
+    xTimer* timer;              // +0x0c
     zNPCCommon* crony[8];       // +0x10
     S32 crony_size;             // +0x30
     U8 fuse_destroyed;          // +0x34
