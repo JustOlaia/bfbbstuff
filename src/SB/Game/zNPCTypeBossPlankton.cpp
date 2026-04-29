@@ -2296,7 +2296,8 @@ S32 zNPCGoalBPlanktonEvade::Enter(F32 dt, void* ctxt)
     owner.move.accel.x = tweak.evade.duration;
     owner.move.max_vel.x = tweak.evade.accel;
     owner.delay = 0.0f;
-    evade_delay = tweak.evade.move_delay_max * xurand() + tweak.evade.move_delay_min;
+    F32 rnd = xurand();
+    evade_delay = tweak.evade.move_delay_max * rnd + tweak.evade.move_delay_min;
     return zNPCGoalCommon::Enter(dt, ctxt);
 }
 
