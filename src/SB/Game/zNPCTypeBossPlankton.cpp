@@ -2290,7 +2290,7 @@ S32 zNPCGoalBPlanktonEvade::Enter(F32 dt, void* ctxt)
     owner.flag.attacking = true;
     owner.reset_speed();
     owner.face_player();
-    owner.flag.move = MOVE_ORBIT
+    owner.flag.move = MOVE_ORBIT;
     owner.flag.follow = zNPCBPlankton::FOLLOW_NONE;
     owner.delay = 0.0f;
     evade_delay = tweak.evade.move_delay_min + xurand() * (tweak.evade.move_delay_max - tweak.evade.move_delay_min);
