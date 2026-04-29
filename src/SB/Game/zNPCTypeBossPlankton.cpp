@@ -2292,8 +2292,11 @@ S32 zNPCGoalBPlanktonEvade::Enter(F32 dt, void* ctxt)
     owner.face_player();
     owner.flag.move = zNPCBPlankton::MOVE_ORBIT;
     owner.flag.follow = zNPCBPlankton::FOLLOW_NONE;
+    owner.reset_speed(); //needs to be recalled to match
+    owner.move.accel.x = tweak.evade.duration;
+    owner.move.max_vel.x = tweak.evade.accel;
     owner.delay = 0.0f;
-    evade_delay = tweak.evade.move_delay_min + xurand() * (tweak.evade.move_delay_max - tweak.evade.move_delay_min);
+    evade_delay = tweak.evade.move_delay_max * xurand() + tweak.evade.move_delay_min;
     return zNPCGoalCommon::Enter(dt, ctxt);
 }
 
