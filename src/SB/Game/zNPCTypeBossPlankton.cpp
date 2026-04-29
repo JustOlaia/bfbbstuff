@@ -2102,11 +2102,11 @@ S32 zNPCGoalBPlanktonIdle::Exit(F32 dt, void* ctxt)
 
 S32 zNPCGoalBPlanktonIdle::Process(en_trantype* trantype, F32 dt, void* ctxt, xScene* xscn)
 {
-    if (owner.crony_attacking())
+    if ((bool)owner.crony_attacking())
     {
         owner.take_control();
         *trantype = GOAL_TRAN_SET;
-        return NPC_GOAL_BPLANKTONHUNT;
+        return NPC_GOAL_BPLANKTONATTACK;
     }
 
     F32 yaw, yawRate;
@@ -2290,6 +2290,7 @@ S32 zNPCGoalBPlanktonEvade::Enter(F32 dt, void* ctxt)
     owner.flag.attacking = true;
     owner.reset_speed();
     owner.face_player();
+    owner.flag.move = MOVE_ORBIT
     owner.flag.follow = zNPCBPlankton::FOLLOW_NONE;
     owner.delay = 0.0f;
     evade_delay = tweak.evade.move_delay_min + xurand() * (tweak.evade.move_delay_max - tweak.evade.move_delay_min);
