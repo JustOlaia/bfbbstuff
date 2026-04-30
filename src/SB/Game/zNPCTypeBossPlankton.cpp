@@ -2327,9 +2327,8 @@ S32 zNPCGoalBPlanktonEvade::Process(en_trantype* trantype, F32 dt, void* ctxt, x
         return NPC_GOAL_BPLANKTONBEAM;
     }
 
-    if (evade_delay <= 0.0f)
-        return 0;
-
+    if (evade_delay > 0.0f)
+    {
     xVec3 ringPos;
     world_to_ring_loc(ringPos, owner.location(), owner.orbit.center);
 
@@ -2349,9 +2348,8 @@ S32 zNPCGoalBPlanktonEvade::Process(en_trantype* trantype, F32 dt, void* ctxt, x
 
     F32 min = tweak.evade.move_delay_min;
     evade_delay = tweak.evade.move_delay_max * xurand() + min;
-
+    }
     return 0;
-}
 // -----------------------------------------------------------------------
 // zNPCGoalBPlanktonHunt
 // -----------------------------------------------------------------------
