@@ -116,6 +116,16 @@ static const xDecalEmitter::curve_node beam_glow_curve[3] = {
         return (xVec3*)&globals.player.ent.model->Mat->pos;
     }
 
+    void world_to_ring_loc(xVec3& out, const xVec3& loc, const xVec3& center)
+{
+    // TODO
+}
+
+void ring_to_world_loc(xVec3& out, const xVec3& ringPos, const xVec3& center)
+{
+    // TODO
+}
+
     S32 init_sound()
     {
         return 0;
