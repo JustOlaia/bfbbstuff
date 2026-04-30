@@ -2310,26 +2310,39 @@ S32 zNPCGoalBPlanktonEvade::Exit(F32 dt, void* ctxt)
 
 S32 zNPCGoalBPlanktonEvade::Process(en_trantype* trantype, F32 dt, void* ctxt, xScene* xscn)
 {
-    evade_delay -= dt; // offset 0x2C8 on owner minus dt; stored in evade_delay member
+    if (owner.delay < tweak.evade.duration)
+    {
+        owner.ambush_delay = tweak.beam.time_fire;
+        *trantype = GOAL_TRAN_SET;
+        return NPC_GOAL_BPLANKTONBEAM;
+    }
 
     if (evade_delay <= 0.0f)
-    {
-        *trantype = GOAL_TRAN_SET;
-        return NPC_GOAL_BPLANKTONATTACK;
-    }
+        return 0;
 
-    // Periodically pick a new escape orbit position
-    owner.delay += dt;
-    F32 moveDelay = tweak.evade.move_delay_min + xurand() * (tweak.evade.move_delay_max - tweak.evade.move_delay_min);
-    if (owner.delay >= moveDelay)
-    {
-        owner.delay = 0.0f;
-        owner.refresh_orbit();
-    }
+    xVec3 ringPos;
+    world_to_ring_loc(*owner.location(), owner.orbit.center, ringPos);
+
+    xVec3 scaledPos = ringPos;
+    if (owner.move.vel.x > 0.0f)
+        scaledPos.x = 1.0f * ringPos.x;
+    else
+        scaledPos.x = -1.0f * ringPos.z;
+
+    xVec3 ringDest;
+    ringDest.x = scaledPos.x;
+    ringDest.y = 0.0f;
+    ringDest.z = owner.orbit.radius;
+
+    xVec3 worldDest;
+    ring_to_world_loc(ringDest, owner.orbit.center, worldDest);
+    xVec3Copy(&owner.move.dest, &worldDest);
+
+    F32 min = tweak.evade.move_delay_min;
+    evade_delay = tweak.evade.move_delay_max * xurand() + min;
 
     return 0;
 }
-
 // -----------------------------------------------------------------------
 // zNPCGoalBPlanktonHunt
 // -----------------------------------------------------------------------
