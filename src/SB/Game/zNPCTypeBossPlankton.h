@@ -99,7 +99,6 @@ struct zNPCBPlankton : zNPCBoss
 
     mode_enum mode;         // 0x2c4 - confirmed: cmpwi r0, 0 -> MODE_BUDDY
     F32 delay;              // 0x2c8
-    U8 _pad[4];
     xQuat gun_tilt;         // 0x2cc (4 floats = 0x10 bytes)
     F32 ambush_delay;       // 0x2dc
     F32 beam_duration;      // 0x2e0
