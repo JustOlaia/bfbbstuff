@@ -2322,7 +2322,7 @@ S32 zNPCGoalBPlanktonEvade::Process(en_trantype* trantype, F32 dt, void* ctxt, x
 {
     if (owner.delay < tweak.evade.duration)
     {
-        owner.ambush_delay = tweak.beam.time_fire;
+        owner.beam_duration = tweak.beam.time_fire;
         *trantype = GOAL_TRAN_SET;
         return NPC_GOAL_BPLANKTONBEAM;
     }
