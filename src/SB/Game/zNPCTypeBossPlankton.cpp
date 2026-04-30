@@ -2321,7 +2321,7 @@ S32 zNPCGoalBPlanktonEvade::Process(en_trantype* trantype, F32 dt, void* ctxt, x
         return 0;
 
     xVec3 ringPos;
-    world_to_ring_loc(ringPos, *owner.location(), owner.orbit.center);
+    world_to_ring_loc(ringPos, owner.location(), owner.orbit.center);
 
     xVec3 scaledPos = ringPos;
     if (owner.move.vel.x > 0.0f)
