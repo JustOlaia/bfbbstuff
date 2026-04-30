@@ -2321,7 +2321,7 @@ S32 zNPCGoalBPlanktonEvade::Process(en_trantype* trantype, F32 dt, void* ctxt, x
         return 0;
 
     xVec3 ringPos;
-    world_to_ring_loc(*owner.location(), owner.orbit.center, ringPos);
+    world_to_ring_loc(ringPos, *owner.location(), owner.orbit.center);
 
     xVec3 scaledPos = ringPos;
     if (owner.move.vel.x > 0.0f)
@@ -2335,8 +2335,7 @@ S32 zNPCGoalBPlanktonEvade::Process(en_trantype* trantype, F32 dt, void* ctxt, x
     ringDest.z = owner.orbit.radius;
 
     xVec3 worldDest;
-    ring_to_world_loc(ringDest, owner.orbit.center, worldDest);
-    xVec3Copy(&owner.move.dest, &worldDest);
+    ring_to_world_loc(worldDest, ringDest, owner.orbit.center);
 
     F32 min = tweak.evade.move_delay_min;
     evade_delay = tweak.evade.move_delay_max * xurand() + min;
