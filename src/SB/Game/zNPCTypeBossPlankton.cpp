@@ -2350,6 +2350,7 @@ S32 zNPCGoalBPlanktonEvade::Process(en_trantype* trantype, F32 dt, void* ctxt, x
     evade_delay = tweak.evade.move_delay_max * xurand() + min;
     }
     return 0;
+}
 // -----------------------------------------------------------------------
 // zNPCGoalBPlanktonHunt
 // -----------------------------------------------------------------------
