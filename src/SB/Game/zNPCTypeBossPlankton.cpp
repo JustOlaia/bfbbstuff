@@ -2328,12 +2328,18 @@ S32 zNPCGoalBPlanktonEvade::Process(en_trantype* trantype, F32 dt, void* ctxt, x
     }
 
     if (evade_delay > 0.0f)
-    {
+{
     xVec3 ringPos;
     world_to_ring_loc(ringPos, owner.location(), owner.orbit.center);
 
+    xVec3 scaledPos = ringPos;
+    if (owner.move.vel.x > 0.0f)
+        scaledPos.x = 1.0f * ringPos.x;
+    else
+        scaledPos.x = -1.0f * ringPos.z;
+
     xVec3 ringDest;
-    ringDest.x = owner.move.vel.x > 0.0f ? ringPos.x : ringPos.z;
+    ringDest.x = scaledPos.x;
     ringDest.y = 0.0f;
     ringDest.z = owner.orbit.radius;
 
@@ -2341,8 +2347,8 @@ S32 zNPCGoalBPlanktonEvade::Process(en_trantype* trantype, F32 dt, void* ctxt, x
 
     F32 min = tweak.evade.move_delay_min;
     evade_delay = tweak.evade.move_delay_max * xurand() + min;
-    }
-    return 0;
+}
+return 0;
 }
 // -----------------------------------------------------------------------
 // zNPCGoalBPlanktonHunt
