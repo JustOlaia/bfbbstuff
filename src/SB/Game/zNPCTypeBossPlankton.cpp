@@ -2342,9 +2342,8 @@ S32 zNPCGoalBPlanktonEvade::Process(en_trantype* trantype, F32 dt, void* ctxt, x
     ringDest.y = 0.0f;
     ringDest.z = owner.orbit.radius;
 
-    xVec3 worldDest;
-    ring_to_world_loc(worldDest, ringDest, owner.orbit.center);
-    xVec3Copy(&owner.move.dest, &worldDest);
+    ring_to_world_loc(ringDest, ringDest, owner.orbit.center);
+    xVec3Copy(&owner.move.dest, &ringDest);
 
     F32 min = tweak.evade.move_delay_min;
     evade_delay = tweak.evade.move_delay_max * xurand() + min;
